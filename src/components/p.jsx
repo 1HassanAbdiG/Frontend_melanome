@@ -19,7 +19,7 @@ const PatientSearchInterface1 = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        {selectedImage && <img src={selectedImage} alt="Image sélectionnée" />}
+        {selectedImage && <img src={selectedImage} alt="Imagesélectionnée" />}
       </div>
       <div className={styles.uploadContainer}>
         <form>

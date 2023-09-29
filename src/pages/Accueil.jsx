@@ -7,7 +7,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
-const imageTypeRegex = /image\/(png|jpg|jpeg)/gm;
+//const imageTypeRegex = /image\/(png|jpg|jpeg)/gm;
 const DefaultImageSrc = image;
 const style = {
     position: 'absolute',
@@ -15,7 +15,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
-    bgcolor: 'background.paper',
+    //bgcolor: 'background.paper',
     border: '2px solid #000',
     bgcolor: '#063806',
     boxShadow: 24,
@@ -326,10 +326,10 @@ export default function Accueil() {
                     </div>
 
                     <div className={styles.item3}>
-                        {images ? <img src={images} alt="image" /> : <img src={DefaultImageSrc} alt="image par défaut" />}
+                        {images ? <img src={images} alt="imageinserer" /> : <img src={DefaultImageSrc} alt="imagepardéfaut" />}
                     </div>
                     <div className={styles.item4}>
-                        {mask ? <img src={mask} alt="image" /> : <img src={DefaultImageSrc} alt="image par défaut" />}
+                        {mask ? <img src={mask} alt="imageinserer" /> : <img src={DefaultImageSrc} alt="imagepardéfaut" />}
                     </div>
                     <div className={styles.item5}>
                         <div className={styles.column}>
