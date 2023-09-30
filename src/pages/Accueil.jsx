@@ -35,27 +35,27 @@ export default function Accueil() {
     const [images, setImages] = useState([image]);
     const [predictions, setPredictions] = useState([]);
     const [predictions1, setPredictions1] = useState([]);
-    const [predictions2, setPredictions2] = useState([]);
+    //const [predictions2, setPredictions2] = useState([]);
     const [newContrast, setNewContrast] = useState('');
     const [newHomogeneity, setNewHomogeneity] = useState('');
     const [newEnergy, setNewEnergy] = useState('');
     const [newCorrelation, setNewCorrelation] = useState('');
-    const [newImageName, setNewImageName] = useState('');
-    const [newSexe, setNewSexe] = useState('');
-    const [newLocalisation, setNewLocalisation] = useState('');
-    const [newAge, setNewAge] = useState('');
+   // const [newImageName, setNewImageName] = useState('');
+    //const [newSexe, setNewSexe] = useState('');
+    //const [newLocalisation, setNewLocalisation] = useState('');
+   // const [newAge, setNewAge] = useState('');
     const [newBordure, setNewBordure] = useState('');
     const [newDiametre, setNewDiametre] = useState('');
     const [newSymetrie, setNewSymetrie] = useState('');
     const [dataset, setDataset] = useState([{}]);
-    const [newId, setNewId] = useState('');
+   // const [newId, setNewId] = useState('');
     const [newPourcentageMalin, setNewPourcentageMalin] = useState('');
     const [newPourcentageBenin, setNewPourcentageBenin] = useState('');
     const [mask, setMask] = useState('');
     const [chemin, setChemin] = useState('');
     /***************************************************** */
 
-    const handleClick = () => {
+   /*  const handleClick = () => {
         if (imageFiles.length !== 0) {
             alert("Modele en cours de construction...")
             /* const formData = new FormData();
@@ -90,12 +90,69 @@ export default function Accueil() {
                 })
                 .catch((error) => {
                     console.error(error);
-                }); */
+                });
         } else {
             console.log('No image selected.');
             alert("pas d'image selectionnée ")
         }
     };
+ */
+
+    const handleClick = () => {
+        if (imageFiles.length !== 0) {
+          const continueProcessing = window.confirm(
+            "Le modèle est en cours de construction. Voulez-vous continuer ?"
+          );
+      
+          if (continueProcessing) {
+            // Continuer avec le traitement de l'image
+            alert("Modele en cours de construction...");
+      
+            /* Mettez ici votre code pour l'appel Axios ou toute autre opération nécessaire */
+
+            const formData = new FormData();
+            formData.append('image', imageFiles[0]);
+
+            axios.post('http://127.0.0.1:5001/predict', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then((response) => {
+                    console.log(response)
+                    const image_data = response.data.image;
+                    // Decode the base64 encoded image
+                    const imageUrl = `data:image/jpeg;base64,${image_data}`;
+
+                    setMask(imageUrl)
+                    setPredictions(response.data.features[0]);
+                    setPredictions1(response.data.features[1]);
+                    //setPredictions2(response.data.diagnostic[0]);
+
+                    setNewCorrelation(response.data.features[0].correlation.toFixed(2));
+                    setNewHomogeneity(response.data.features[0].homogeneity.toFixed(2));
+                    setNewEnergy(response.data.features[0].energy.toFixed(2));
+                    setNewContrast(response.data.features[0].contrast.toFixed(2));
+                    setNewDiametre(response.data.features[1].diameter.toFixed(2));
+                    setNewSymetrie(response.data.features[1].asymmetry.toFixed(2))
+                    setNewBordure(response.data.features[1].border_length.toFixed(2))
+                    setNewPourcentageMalin(response.data.diagnostic[0][1].toFixed(2) * 100)
+                    setNewPourcentageBenin(response.data.diagnostic[0][0].toFixed(2) * 100)
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.error(error);
+                }); 
+      
+          } else {
+            alert("Annulation de l'opération de traitement.");
+          }
+        } else {
+          console.log('No image selected.');
+          alert("Pas d'image sélectionnée.");
+        }
+      };
+      
     /******************************************************************************** */
     useEffect(() => {
         const images = [];
@@ -137,7 +194,7 @@ export default function Accueil() {
 
     /************************************************************************ */
 
-    const [imageUrls, setImageUrls] = useState([]);
+    //const [imageUrls, setImageUrls] = useState([]);
 
     const imageTypeRegex = /^image\//;
 
@@ -155,7 +212,7 @@ export default function Accueil() {
         }
         if (validImageFiles.length) {
             setImageFiles(validImageFiles);
-            setImageUrls(validImageUrls);
+            //setImageUrls(validImageUrls);
         } else {
             alert("Selected images are not of valid type!");
         };
@@ -191,11 +248,11 @@ export default function Accueil() {
                 console.error(error);
             });
 
-        setNewId('');
-        setNewImageName('');
-        setNewSexe('');
-        setNewLocalisation('');
-        setNewAge('');
+        //setNewId('');
+        //setNewImageName('');
+        //setNewSexe('');
+        //setNewLocalisation('');
+        //setNewAge('');
         setNewBordure('');
         setNewDiametre('');
         setNewSymetrie('');
@@ -292,7 +349,7 @@ export default function Accueil() {
                             style={{ display: 'none' }}
                         />
 
-                        <button className={styles.button} role="button" onClick={handleClick}>
+                        <button  type="button" className={styles.button}  onClick={handleClick}>
                             Faire une prédiction
                         </button>
                         <button className={styles.button} onClick={toggleButtonsDisplay}>Diagnostic du dermatologue</button>
@@ -320,7 +377,7 @@ export default function Accueil() {
                             </div>
 
                         </div>)}
-                        <button class="button-41" role="button" onClick={handleOpen}>Compléter les  autres informations du patient</button>
+                        <button  type="button" class="button-41"  onClick={handleOpen}>Compléter les  autres informations du patient</button>
 
 
                     </div>

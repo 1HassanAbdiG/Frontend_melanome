@@ -25,7 +25,7 @@ export default function DatasetTable() {
     const [newPourcentageMalin, setNewPourcentageMalin] = useState('');
     const [newPourcentageBenin, setNewPourcentageBenin] = useState('');
 
-    const [patientData, setPatientData] = useState([]);
+   // const [patientData, setPatientData] = useState([]);
     const [message, setMessage] = useState('');
 
     useEffect(() => {
@@ -89,7 +89,7 @@ export default function DatasetTable() {
         axios.delete('https://wooded-classic-manchego.glitch.me/patient')
           .then(response => {
             setMessage(response.data);
-            setPatientData([]); // Vider les données du patient affichées
+           // setPatientData([]); // Vider les données du patient affichées
             window.location.reload()
           })
           .catch(error => {

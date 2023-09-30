@@ -1,13 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from "../pages/detailPatient.module.css";
-import PatientSearchInterface1 from '../components/p';
+//import PatientSearchInterface1 from '../components/p';
 
 const PatientSearchInterface = () => {
   const [idPatient, setIdPatient] = useState('');
   const [patientData, setPatientData] = useState([]);
-  const [imageSrcs, setImageSrcs] = useState([]);
+  //const [imageSrcs, setImageSrcs] = useState([]);
 
   const handleSearchSubmit = async (event) => {
     event.preventDefault();
@@ -66,7 +66,7 @@ const PatientSearchInterface = () => {
               {patientData.map((data, index) => (
                 <tr key={data.id}>
                   <td>{data.id}</td>
-                  <td><img src={data.chemin} alt="Image" /></td>
+                  <td><img src={data.chemin} alt="Imagemelanome" /></td>
                   <td>{data.Id_patient}</td>
                   <td>{data.image_name}</td>
                   <td>{data.sexe}</td>
