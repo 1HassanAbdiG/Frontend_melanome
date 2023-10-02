@@ -5,10 +5,15 @@
   background-color: #474545;
   height: 75vh;
 }
+.conteneur h2{
+  color: #ccc;
+}
 
 .conteneur2 {
   display: flex;
   margin-bottom: 20px;
+  color: #ccc;
+  font-weight: bold;
 }
 
 .resultat {
@@ -45,4 +50,23 @@
 .tableau td img {
   max-width: 200px;
   max-height: 200px;
+}
+.tablecontainer h2{
+  color: #f0f0f0;
+}
+.tablecontainer p{
+  color: #241b1b;
+}
+.tablecontainer {
+ padding: 20px;
+}
+
+
+
+/* Styles lorsque la largeur de l'écran est inférieure à 768px (ajustez cette valeur selon vos besoins) */
+@media screen and (max-width: 768px) {
+  .conteneur2 {
+    width: 80%;
+  }
+  
 }

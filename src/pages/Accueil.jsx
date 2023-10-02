@@ -14,12 +14,13 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 500,
+    width: 400,
     //bgcolor: 'background.paper',
     border: '2px solid #000',
     bgcolor: '#063806',
     boxShadow: 24,
-    p: 4,
+    p: 2,
+    color: "white"
 };
 
 export default function Accueil() {
@@ -40,119 +41,119 @@ export default function Accueil() {
     const [newHomogeneity, setNewHomogeneity] = useState('');
     const [newEnergy, setNewEnergy] = useState('');
     const [newCorrelation, setNewCorrelation] = useState('');
-   // const [newImageName, setNewImageName] = useState('');
+    // const [newImageName, setNewImageName] = useState('');
     //const [newSexe, setNewSexe] = useState('');
     //const [newLocalisation, setNewLocalisation] = useState('');
-   // const [newAge, setNewAge] = useState('');
+    // const [newAge, setNewAge] = useState('');
     const [newBordure, setNewBordure] = useState('');
     const [newDiametre, setNewDiametre] = useState('');
     const [newSymetrie, setNewSymetrie] = useState('');
     const [dataset, setDataset] = useState([{}]);
-   // const [newId, setNewId] = useState('');
+    // const [newId, setNewId] = useState('');
     const [newPourcentageMalin, setNewPourcentageMalin] = useState('');
     const [newPourcentageBenin, setNewPourcentageBenin] = useState('');
     const [mask, setMask] = useState('');
     const [chemin, setChemin] = useState('');
     /***************************************************** */
 
-   /*  const handleClick = () => {
-        if (imageFiles.length !== 0) {
-            alert("Modele en cours de construction...")
-            /* const formData = new FormData();
-            formData.append('image', imageFiles[0]);
-
-            axios.post('http://127.0.0.1:5001/predict', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then((response) => {
-                    console.log(response)
-                    const image_data = response.data.image;
-                    // Decode the base64 encoded image
-                    const imageUrl = `data:image/jpeg;base64,${image_data}`;
-
-                    setMask(imageUrl)
-                    setPredictions(response.data.features[0]);
-                    setPredictions1(response.data.features[1]);
-                    setPredictions2(response.data.diagnostic[0]);
-
-                    setNewCorrelation(response.data.features[0].correlation.toFixed(2));
-                    setNewHomogeneity(response.data.features[0].homogeneity.toFixed(2));
-                    setNewEnergy(response.data.features[0].energy.toFixed(2));
-                    setNewContrast(response.data.features[0].contrast.toFixed(2));
-                    setNewDiametre(response.data.features[1].diameter.toFixed(2));
-                    setNewSymetrie(response.data.features[1].asymmetry.toFixed(2))
-                    setNewBordure(response.data.features[1].border_length.toFixed(2))
-                    setNewPourcentageMalin(response.data.diagnostic[0][1].toFixed(2) * 100)
-                    setNewPourcentageBenin(response.data.diagnostic[0][0].toFixed(2) * 100)
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        } else {
-            console.log('No image selected.');
-            alert("pas d'image selectionnée ")
-        }
-    };
- */
+    /*  const handleClick = () => {
+         if (imageFiles.length !== 0) {
+             alert("Modele en cours de construction...")
+             /* const formData = new FormData();
+             formData.append('image', imageFiles[0]);
+ 
+             axios.post('http://127.0.0.1:5001/predict', formData, {
+                 headers: {
+                     'Content-Type': 'multipart/form-data'
+                 }
+             })
+                 .then((response) => {
+                     console.log(response)
+                     const image_data = response.data.image;
+                     // Decode the base64 encoded image
+                     const imageUrl = `data:image/jpeg;base64,${image_data}`;
+ 
+                     setMask(imageUrl)
+                     setPredictions(response.data.features[0]);
+                     setPredictions1(response.data.features[1]);
+                     setPredictions2(response.data.diagnostic[0]);
+ 
+                     setNewCorrelation(response.data.features[0].correlation.toFixed(2));
+                     setNewHomogeneity(response.data.features[0].homogeneity.toFixed(2));
+                     setNewEnergy(response.data.features[0].energy.toFixed(2));
+                     setNewContrast(response.data.features[0].contrast.toFixed(2));
+                     setNewDiametre(response.data.features[1].diameter.toFixed(2));
+                     setNewSymetrie(response.data.features[1].asymmetry.toFixed(2))
+                     setNewBordure(response.data.features[1].border_length.toFixed(2))
+                     setNewPourcentageMalin(response.data.diagnostic[0][1].toFixed(2) * 100)
+                     setNewPourcentageBenin(response.data.diagnostic[0][0].toFixed(2) * 100)
+                     console.log(response)
+                 })
+                 .catch((error) => {
+                     console.error(error);
+                 });
+         } else {
+             console.log('No image selected.');
+             alert("pas d'image selectionnée ")
+         }
+     };
+  */
 
     const handleClick = () => {
         if (imageFiles.length !== 0) {
-          const continueProcessing = window.confirm(
-            "Le modèle est en cours de construction. Voulez-vous continuer ?"
-          );
-      
-          if (continueProcessing) {
-            // Continuer avec le traitement de l'image
-            alert("Modele en cours de construction...");
-      
-            /* Mettez ici votre code pour l'appel Axios ou toute autre opération nécessaire */
+            const continueProcessing = window.confirm(
+                "Le modèle est en cours de construction. Voulez-vous continuer ?"
+            );
 
-            const formData = new FormData();
-            formData.append('image', imageFiles[0]);
+            if (continueProcessing) {
+                // Continuer avec le traitement de l'image
+                alert("Modele en cours de construction...");
 
-            axios.post('http://127.0.0.1:5001/predict', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then((response) => {
-                    console.log(response)
-                    const image_data = response.data.image;
-                    // Decode the base64 encoded image
-                    const imageUrl = `data:image/jpeg;base64,${image_data}`;
+                /* Mettez ici votre code pour l'appel Axios ou toute autre opération nécessaire */
 
-                    setMask(imageUrl)
-                    setPredictions(response.data.features[0]);
-                    setPredictions1(response.data.features[1]);
-                    //setPredictions2(response.data.diagnostic[0]);
+                const formData = new FormData();
+                formData.append('image', imageFiles[0]);
 
-                    setNewCorrelation(response.data.features[0].correlation.toFixed(2));
-                    setNewHomogeneity(response.data.features[0].homogeneity.toFixed(2));
-                    setNewEnergy(response.data.features[0].energy.toFixed(2));
-                    setNewContrast(response.data.features[0].contrast.toFixed(2));
-                    setNewDiametre(response.data.features[1].diameter.toFixed(2));
-                    setNewSymetrie(response.data.features[1].asymmetry.toFixed(2))
-                    setNewBordure(response.data.features[1].border_length.toFixed(2))
-                    setNewPourcentageMalin(response.data.diagnostic[0][1].toFixed(2) * 100)
-                    setNewPourcentageBenin(response.data.diagnostic[0][0].toFixed(2) * 100)
-                    console.log(response)
+                axios.post('http://127.0.0.1:5001/predict', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 })
-                .catch((error) => {
-                    console.error(error);
-                }); 
-      
-          } else {
-            alert("Annulation de l'opération de traitement.");
-          }
+                    .then((response) => {
+                        console.log(response)
+                        const image_data = response.data.image;
+                        // Decode the base64 encoded image
+                        const imageUrl = `data:image/jpeg;base64,${image_data}`;
+
+                        setMask(imageUrl)
+                        setPredictions(response.data.features[0]);
+                        setPredictions1(response.data.features[1]);
+                        //setPredictions2(response.data.diagnostic[0]);
+
+                        setNewCorrelation(response.data.features[0].correlation.toFixed(2));
+                        setNewHomogeneity(response.data.features[0].homogeneity.toFixed(2));
+                        setNewEnergy(response.data.features[0].energy.toFixed(2));
+                        setNewContrast(response.data.features[0].contrast.toFixed(2));
+                        setNewDiametre(response.data.features[1].diameter.toFixed(2));
+                        setNewSymetrie(response.data.features[1].asymmetry.toFixed(2))
+                        setNewBordure(response.data.features[1].border_length.toFixed(2))
+                        setNewPourcentageMalin(response.data.diagnostic[0][1].toFixed(2) * 100)
+                        setNewPourcentageBenin(response.data.diagnostic[0][0].toFixed(2) * 100)
+                        console.log(response)
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+
+            } else {
+                alert("Annulation de l'opération de traitement.");
+            }
         } else {
-          console.log('No image selected.');
-          alert("Pas d'image sélectionnée.");
+            console.log('No image selected.');
+            alert("Pas d'image sélectionnée.");
         }
-      };
-      
+    };
+
     /******************************************************************************** */
     useEffect(() => {
         const images = [];
@@ -166,7 +167,7 @@ export default function Accueil() {
                     const { result } = e.target;
                     if (result) {
                         images.push(result);
-                        console.log("resu",images)
+                        console.log("resu", images)
                     }
                     if (images.length === imageFiles.length && !isCancel) {
                         setImages(images);
@@ -330,14 +331,12 @@ export default function Accueil() {
             </Modal>
 
             <div className={styles.conteneurAccueil1}>
+
+
                 <h1><span>D</span>étection de mélanome basée sur une analyse d’images de la Peau</h1>
-                <div className={styles.gridcontainer}>
-                    <div className={styles.item1}>
-                        <div className={styles.preduct}>Prédiction :</div>
-                        <div className={styles.resultPreduc}>{newPourcentageBenin} % Bénin  sur 100%</div>
-                        <div className={styles.resultPreduc}>{newPourcentageMalin} % Malin  sur 100%</div>
-                    </div>
-                    <div className={styles.item2}>
+                <div className={styles.conteneurPartie}>
+
+                    <div className={styles.ConteneurdiagnosInfo}>
                         <label htmlFor="upload-image" className={styles.button}>
                             Sélectionner une image
                         </label>
@@ -349,78 +348,161 @@ export default function Accueil() {
                             style={{ display: 'none' }}
                         />
 
-                        <button  type="button" className={styles.button}  onClick={handleClick}>
+                        <button type="button" className={styles.button} onClick={handleClick}>
                             Faire une prédiction
                         </button>
-                        <button className={styles.button} onClick={toggleButtonsDisplay}>Diagnostic du dermatologue</button>
-                        {buttonContainerVisible && (<div className={styles.container1}>
-                            <div className={styles.ligne}>
-                                <button className={`${styles.benin} ${clickedButton === 0 ? styles.active : ''}`}
-                                    onClick={() => handleButtonClick(0)}
-                                >
-                                    Benin
-                                </button>
-                                <button
-                                    className={`${styles.malin} ${clickedButton === 1 ? styles.active : ''}`}
-                                    onClick={() => handleButtonClick(1)}
-                                >
-                                    Malin
-                                </button>
-                                <button
-                                    className={`${styles.incertain} ${clickedButton === 0.5 ? styles.active : ''}`}
-                                    onClick={() => handleButtonClick(0.5)}
-                                >
-                                    Incertain
-                                </button>
-                                {clickedButton}
-
-                            </div>
-
-                        </div>)}
-                        <button  type="button" class="button-41"  onClick={handleOpen}>Compléter les  autres informations du patient</button>
-
-
                     </div>
 
-                    <div className={styles.item3}>
-                        {images ? <img src={images} alt="imageinserer" /> : <img src={DefaultImageSrc} alt="imagepardéfaut" />}
+
+
+
+
+                    <div className={styles.gridContainerImages}>
+
+                        <div className={styles.itemImg}>
+                            {images ? (
+                                <img src={images} alt="imageinserer" />
+                            ) : (
+                                <img src={DefaultImageSrc} alt="imagepardéfaut" />
+                            )}
+
+                        </div>
+
+
+                        <div className={styles.itemMask}>
+                            {mask ? (
+                                <img src={mask} alt="imageinserer" />
+                            ) : (
+                                <img src={DefaultImageSrc} alt="imagepardéfaut" />
+                            )}
+                        </div>
                     </div>
-                    <div className={styles.item4}>
-                        {mask ? <img src={mask} alt="imageinserer" /> : <img src={DefaultImageSrc} alt="imagepardéfaut" />}
-                    </div>
-                    <div className={styles.item5}>
-                        <div className={styles.column}>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Asymétrie:</p> <p className={styles.start}>{predictions1.asymmetry ? predictions1.asymmetry.toFixed(2) : 'N/A'}</p>
+
+                </div>
+
+
+                <div className={styles.conteneurPartie}>
+                    <h2><span>P</span>rédiction à partir de l'image</h2>
+                    <div className={styles.resultat}>
+
+                    <div className={styles.beninMalin}>
+
+
+                        
+                            <div className={styles.beninR}>
+                                <p >{newPourcentageBenin} /100 Bénin   </p>
+
                             </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Bordure:</p> <p className={styles.start}>{predictions1.border_length ? predictions1.border_length.toFixed(2) : 'N/A'} </p>
+                        
+                        
+                            <div className={styles.malinR}>
+                                <p >{newPourcentageMalin} /100 Malin  </p>
+
                             </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Diamètre:</p> <p className={styles.start}>{predictions1.diameter ? predictions1.diameter.toFixed(2) : 'N/A'} </p>
+                        
+                        </div>
+
+
+                        <div className={styles.item5}>
+
+                            <div className={styles.column}>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Asymétrie:</p>
+                                    <p className={styles.start}>
+                                        {predictions1.asymmetry ? predictions1.asymmetry.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Bordure:</p>
+                                    <p className={styles.start}>
+                                        {predictions1.border_length ? predictions1.border_length.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Diamètre:</p>
+                                    <p className={styles.start}>
+                                        {predictions1.diameter ? predictions1.diameter.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Évolution:</p>
+                                    <p className={styles.start}>Non traitée</p>
+                                </div>
                             </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Évolution:</p> <p className={styles.start}>Non traitée</p>
+
+                            <div className={styles.column}>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Corrélation:</p>
+                                    <p className={styles.start}>
+                                        {predictions.correlation ? predictions.correlation.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Homogénéité:</p>
+                                    <p className={styles.start}>
+                                        {predictions.homogeneity ? predictions.homogeneity.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Énergie:</p>
+                                    <p className={styles.start}>
+                                        {predictions.energy ? predictions.energy.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
+                                <div className={styles.resultPreduc}>
+                                    <p className={styles.start}>Contraste:</p>
+                                    <p className={styles.start}>
+                                        {predictions.contrast ? predictions.contrast.toFixed(2) : 'N/A'}
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        <div className={styles.column}>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Corrélation:</p> <p className={styles.start}>{predictions.correlation ? predictions.correlation.toFixed(2) : 'N/A'}</p>
-                            </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Homogénéité:</p><p className={styles.start}> {predictions.homogeneity ? predictions.homogeneity.toFixed(2) : 'N/A'}</p>
-                            </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Énergie:</p><p className={styles.start}> {predictions.energy ? predictions.energy.toFixed(2) : 'N/A'}</p>
-                            </div>
-                            <div className={styles.resultPreduc}>
-                                <p className={styles.start}>Contraste:</p><p className={styles.start}> {predictions.contrast ? predictions.energy.toFixed(2) : 'N/A'}</p>
-                            </div>
+                    </div>
+
+                </div>
+
+
+                <div className={styles.conteneurPartie}>
+                    <h2><span>D</span>iagnostic et <span>I</span>nformation du patient</h2>
+
+
+                    <div className={styles.ConteneurdiagnosInfo}>
+                        <div className={styles.Conteneurdiagnos}>
+                            <button onClick={toggleButtonsDisplay}>Diagnostic du dermatologue</button>
+                            {buttonContainerVisible && (
+
+                                <div className={styles.ligne}>
+                                    <button className={`${styles.benin} ${clickedButton === 0 ? styles.active : ''}`}
+                                        onClick={() => handleButtonClick(0)}
+                                    >
+                                        Benin
+                                    </button>
+                                    <button
+                                        className={`${styles.malin} ${clickedButton === 1 ? styles.active : ''}`}
+                                        onClick={() => handleButtonClick(1)}
+                                    >
+                                        Malin
+                                    </button>
+                                    <button
+                                        className={`${styles.incertain} ${clickedButton === 0.5 ? styles.active : ''}`}
+                                        onClick={() => handleButtonClick(0.5)}
+                                    >
+                                        Incertain
+                                    </button>
+                                    {clickedButton}
+
+                                </div>)}
                         </div>
+                        <div className={styles.ConteneurInfo}>
+                            <button type="button" class="button-41" onClick={handleOpen}>Compléter les  autres informations du patient</button>
+
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        </body>
+
+            </div >
+        </body >
     );
 }

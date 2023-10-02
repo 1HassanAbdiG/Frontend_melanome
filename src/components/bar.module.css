@@ -1,0 +1,20 @@
+
+/* bar.css */
+.redappbar {
+    background-color: #2a1111 !important;
+    
+    
+  }
+  .logo{
+    color: #333 !important;
+    text-decoration: none;
+    font-weight: bold;
+    
+
+  }
+  .logo1{
+    color: rgb(209, 216, 216) !important;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+  }

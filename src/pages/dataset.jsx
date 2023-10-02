@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../pages/c.module.css';
+
+import styles from "../pages/detailPatient.module.css";
+
 
 export default function DatasetTable() {
     /***************************/
     const [loading, setLoading] = useState(true);
 
     /***************** */
-    
-    
+
+
     const [dataset, setDataset] = useState([{}]);
     const [newId, setNewId] = useState('');
     const [newImageName, setNewImageName] = useState('');
@@ -25,7 +27,7 @@ export default function DatasetTable() {
     const [newPourcentageMalin, setNewPourcentageMalin] = useState('');
     const [newPourcentageBenin, setNewPourcentageBenin] = useState('');
 
-   // const [patientData, setPatientData] = useState([]);
+    //const [patientData, setPatientData] = useState([]);
     const [message, setMessage] = useState('');
 
     useEffect(() => {
@@ -87,73 +89,89 @@ export default function DatasetTable() {
     }
     const handleEmptyPatient = () => {
         axios.delete('https://wooded-classic-manchego.glitch.me/patient')
-          .then(response => {
-            setMessage(response.data);
-           // setPatientData([]); // Vider les données du patient affichées
-            window.location.reload()
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      };
-    
+            .then(response => {
+                setMessage(response.data);
+                // setPatientData([]); // Vider les données du patient affichées
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
-    if (loading)  {return(<div><h1>chargement</h1></div>)} else return(
-        <div className={styles.tablecontainer}>
+
+    return (
+        <div className={styles.conteneur}>
 
             <h2>Dataset </h2>
-            <table className={styles.datasettable}>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Id Patient</th>
-                        <th>Image Name</th>
-                        <th>Sexe</th>
-                        <th>Localisation</th>
-                        <th>Âge</th>
-                        <th>Bordure</th>
-                        <th>Diamètre</th>
-                        <th>Symétrie</th>
-                        <th>Contrast</th>
-                        <th>Homogeneity</th>
-                        <th>Energy</th>
-                        <th>Correlation</th>
-                        <th>Pourcentage Malin</th>
-                        <th>Pourcentage Benin</th>
-                        <th>Diagnostic du dermatologue</th>
+            <div className={styles.resultat}>
+                {dataset && (
+                    <table className={styles.tableau}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {dataset.map((data) => (
-                        <tr key={data.id}>
-                            <td>{data.id}</td>
-                            <td>{data.Id_patient}</td>
-                            <td>{data.image_name}</td>
-                            <td>{data.sexe}</td>
-                            <td>{data.localisation}</td>
-                            <td>{data.age}</td>
-                            <td>{data.bordure}</td>
-                            <td>{data.diametre}</td>
-                            <td>{data.symetrie}</td>
-                            <td>{data.contrast}</td>
-                            <td>{data.homogeneity}</td>
-                            <td>{data.energy}</td>
-                            <td>{data.correlation}</td>
-                            <td>{data.pourcentage_malin}</td>
-                            <td>{data.pourcentage_benin}</td>
-                            <td>{data.target}</td>
+                                <th>Image</th>
+                                <th>ID Patient</th>
+                                <th>Image Name</th>
+                                <th>Sexe</th>
+                                <th>Localisation</th>
+                                <th>Âge</th>
+                                <th>Bordure</th>
+                                <th>Diamètre</th>
+                                <th>Symétrie</th>
+                                <th>Contrast</th>
+                                <th>Homogeneity</th>
+                                <th>Energy</th>
+                                <th>Correlation</th>
+                                <th>Pourcentage Malin</th>
+                                <th>Pourcentage Benin</th>
+                                <th>Diagnostic du dermatologue</th>
+
+                                {/* Ajoutez d'autres en-têtes en fonction des données que vous récupérez */}
+                            </tr>
+                        </thead>
 
 
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            {dataset.length === 0 ? <p>Aucun patient trouvé.</p>:<div>
-          <button onClick={handleEmptyPatient}>Vider les données des pateints </button>
-          <p>{message}</p>
-        </div>}
-        
+
+                        <tbody>
+
+                            {loading ? (
+                                <div><h1>chargement</h1></div>
+                            ) : (
+                                dataset.map((data, index) => (
+                                    <tr key={data.id}>
+                                        <td>{data.id}</td>
+                                        <td><img src={data.chemin} alt="Imagemelanome" /></td>
+                                        <td>{data.Id_patient}</td>
+                                        <td>{data.image_name}</td>
+                                        <td>{data.sexe}</td>
+                                        <td>{data.localisation}</td>
+                                        <td>{data.age}</td>
+                                        <td>{data.bordure}</td>
+                                        <td>{data.diametre}</td>
+                                        <td>{data.symetrie}</td>
+                                        <td>{data.contrast}</td>
+                                        <td>{data.homogeneity}</td>
+                                        <td>{data.energy}</td>
+                                        <td>{data.correlation}</td>
+                                        <td>{data.pourcentage_malin}</td>
+                                        <td>{data.pourcentage_benin}</td>
+                                        <td>{data.target}</td>
+
+                                    </tr>
+                                ))
+                            )}
+
+                        </tbody>
+                    </table>   )  } 
+            </div>
+
+                {dataset.length === 0 ? <p>Aucun patient trouvé.</p> : <div>
+                    <button onClick={handleEmptyPatient}>Vider les données des pateints </button>
+                    <p>{message}</p>
+                </div>}
+
         </div>
     );
 }

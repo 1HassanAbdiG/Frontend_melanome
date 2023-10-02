@@ -3,11 +3,13 @@
 import React from 'react';
 
 
-import Nav from './Nav';
+//import Nav from './Nav';
+import ResponsiveAppBar from './bar';
 
 const Header = () => {
     return <header>
-        <Nav />     
+        {/*<Nav /> */}
+        <ResponsiveAppBar>HASSAN</ResponsiveAppBar>
     </header>
 };
 
